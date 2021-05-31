@@ -1,28 +1,41 @@
-import react,{useState} from 'react';
+import react,{useState, useEffect} from 'react';
 import './App.css';
 import {Table, h1} from 'react-bootstrap';
 import axios from 'axios';
 
-
 function App() {
 
+  var str = "";
+  var active = "";
+  let [pageMaker, setPageMaker] = useState([]);
   let [list, setList] = useState([]);
   const url = "http://localhost:8282/board/list/1.json";
 
-  let boardList = () => {
+  useEffect(() => {
+
+  
     axios.get(url)
     .then((response) => {
       
       setList(response.data.list);
+      setPageMaker(response.data.pageMaker);
+     
+   
       console.log("성공")
+    //  var active = pageMaker.cri.page ==  ? 'active' : ''
     })
     .catch((e) => {
       console.log("실패")
       
     })
 
-  }
+  },[]);
 
+  
+  let array = [];
+  for (let i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
+      array.push(i);
+  }
   
   return (
 
@@ -30,7 +43,7 @@ function App() {
 
     <div className="container">
       <h1 className="text-primary text-center">게시물 리스트</h1><br /><br />
-      {boardList()}
+      
      <Table striped bordered hover >
         <thead>
           <tr className="text-center">
@@ -52,8 +65,12 @@ function App() {
         ))}
         </tbody>
       </Table>
-      
-      
+      {pageMaker.prev === true ? 
+       <li class='page-item'><a class='page-link' href={pageMaker.startPage -1}> &laquo;</a></li> :""}
+        {array.map(page => (
+          <a href={page}>{page}</a>
+        ))}
+					{ console.log(pageMaker)}
     </div>
     
   );
