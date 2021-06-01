@@ -5,14 +5,13 @@ import axios from 'axios';
 
 function App() {
 
-  var str = "";
-  var active = "";
+  var startPage = 1;
   let [pageMaker, setPageMaker] = useState([]);
   let [list, setList] = useState([]);
-  const url = "http://localhost:8282/board/list/1.json";
-
+  const url = "http://localhost:8282/board/list/" + startPage;
   useEffect(() => {
 
+    console.log();
   
     axios.get(url)
     .then((response) => {
@@ -70,7 +69,7 @@ function App() {
         {array.map(page => (
           <a href={page}>{page}</a>
         ))}
-					{ console.log(pageMaker)}
+					
     </div>
     
   );
