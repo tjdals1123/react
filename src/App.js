@@ -2,35 +2,38 @@ import react,{useState, useEffect} from 'react';
 import './App.css';
 import {Table, h1} from 'react-bootstrap';
 import axios from 'axios';
+import List from './List';
 
 function App() {
 
-  var startPage = 1;
+  let startPage = 1;
   let [pageMaker, setPageMaker] = useState([]);
   let [list, setList] = useState([]);
   const url = "http://localhost:8282/board/list/" + startPage;
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log();
   
-    axios.get(url)
-    .then((response) => {
+  //   axios.get(url)
+  //   .then((response) => {
       
-      setList(response.data.list);
-      setPageMaker(response.data.pageMaker);
+  //     setList(response.data.list);
+  //     setPageMaker(response.data.pageMaker);
      
    
-      console.log("성공")
-    //  var active = pageMaker.cri.page ==  ? 'active' : ''
-    })
-    .catch((e) => {
-      console.log("실패")
+  //     console.log("성공")
+  //     console.log(url);
+  //   //  var active = pageMaker.cri.page ==  ? 'active' : ''
+  //   })
+  //   .catch((e) => {
+  //     console.log("실패")
       
-    })
+  //   })
 
-  },[]);
+    
 
-  
+  // },[]);
+
+
   let array = [];
   for (let i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
       array.push(i);
@@ -43,7 +46,7 @@ function App() {
     <div className="container">
       <h1 className="text-primary text-center">게시물 리스트</h1><br /><br />
       
-     <Table striped bordered hover >
+     {/* <Table striped bordered hover >
         <thead>
           <tr className="text-center">
             <th>글번호</th>
@@ -63,7 +66,8 @@ function App() {
           
         ))}
         </tbody>
-      </Table>
+      </Table> */}
+        <List setList={setList} setPageMaker={setPageMaker} startPage={startPage} list={list}></List>
       {pageMaker.prev === true ? 
        <li class='page-item'><a class='page-link' href={pageMaker.startPage -1}> &laquo;</a></li> :""}
         {array.map(page => (
