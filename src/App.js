@@ -1,8 +1,15 @@
 import react,{useState, useEffect} from 'react';
 import './App.css';
+<<<<<<< HEAD
 import PagingList from './PagingList.js'
 import {Link,Route,History} from "react-router-dom";
 import {Pagination} from 'react-bootstrap';
+=======
+import {Table, h1} from 'react-bootstrap';
+import axios from 'axios';
+import List from './List';
+import {Link, Route, History} from "react-router-dom";
+>>>>>>> 026ae7ed77fc2b51248636e0698f7bdb8239fb5f
 
 
 function App() {
@@ -46,6 +53,7 @@ function App() {
     <div className="container">
       <h1 className="text-primary text-center">게시물 리스트</h1><br /><br />
       
+<<<<<<< HEAD
       
       <Route path="/:page">
         <PagingList setList={setList} setPageMaker={setPageMaker} list={list}></PagingList>
@@ -62,6 +70,36 @@ function App() {
           <li className="page-item"><a className="page-link" href="#">Previous</a></li>
           {array.map(page => (
           <li className="page-item"><a className="page-link" href={page}>{page}</a></li>
+=======
+     {/* <Table striped bordered hover >
+        <thead>
+          <tr className="text-center">
+            <th>글번호</th>
+            <th className="col-md-5">제목</th>
+            <th className="col-md-3">작성자</th>
+            <th>작성일자</th>
+          </tr>
+        </thead>
+        <tbody className="text-center">
+        {list.map((item) => (
+          <tr>
+          <td>{item.bno}</td>
+          <td>{item.title}</td>
+          <td>{item.writer}</td>
+          <td>{item.regdate}</td>
+          </tr>
+          
+        ))}
+        </tbody>
+      </Table> */}
+       
+          <List setList={setList} setPageMaker={setPageMaker} startPage={startPage} list={list}></List>
+        
+      {pageMaker.prev === true ? 
+       <li class='page-item'><a class='page-link' href={pageMaker.startPage -1}> &laquo;</a></li> :""}
+        {array.map(page => (
+          {page}
+>>>>>>> 026ae7ed77fc2b51248636e0698f7bdb8239fb5f
         ))}
           <li className="page-item"><a className="page-link" href="#">Next</a></li>
         </ul>
