@@ -3,6 +3,7 @@ import './App.css';
 import {Table, h1} from 'react-bootstrap';
 import axios from 'axios';
 import List from './List';
+import {Link, Route, History} from "react-router-dom";
 
 function App() {
 
@@ -67,11 +68,13 @@ function App() {
         ))}
         </tbody>
       </Table> */}
-        <List setList={setList} setPageMaker={setPageMaker} startPage={startPage} list={list}></List>
+       
+          <List setList={setList} setPageMaker={setPageMaker} startPage={startPage} list={list}></List>
+        
       {pageMaker.prev === true ? 
        <li class='page-item'><a class='page-link' href={pageMaker.startPage -1}> &laquo;</a></li> :""}
         {array.map(page => (
-          <a href={page}>{page}</a>
+          {page}
         ))}
 					
     </div>

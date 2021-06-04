@@ -1,10 +1,11 @@
 import react,{useState, useEffect} from 'react';
 import axios from 'axios';
 import {Table} from 'react-bootstrap';
+import {Link, Route, History} from "react-router-dom";
 
 function List(props) {
 
-    const url = "http://localhost:8282/board/list/" + props.startPage;
+    const url = "http://localhost:8282/board/list/"; 
 
     useEffect(() => {
     axios.get(url)
@@ -14,7 +15,7 @@ function List(props) {
       props.setPageMaker(response.data.pageMaker);
      
    
-      console.log("성공")
+      console.log("성공");
       console.log(url);
     //  var active = pageMaker.cri.page ==  ? 'active' : ''
     })
@@ -23,7 +24,7 @@ function List(props) {
       
     })
 
-},[props.startPage]);
+},[]);
 
 
 
