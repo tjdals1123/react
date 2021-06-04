@@ -1,44 +1,44 @@
 import react,{useState, useEffect} from 'react';
 import './App.css';
-import {Table, h1} from 'react-bootstrap';
-import axios from 'axios';
-import List from './List';
+import PagingList from './PagingList.js'
+import {Link,Route,History} from "react-router-dom";
+import {Pagination} from 'react-bootstrap';
+
 
 function App() {
 
-  let startPage = 1;
-  let [pageMaker, setPageMaker] = useState([]);
-  let [list, setList] = useState([]);
-  const url = "http://localhost:8282/board/list/" + startPage;
-  // useEffect(() => {
-
   
-  //   axios.get(url)
-  //   .then((response) => {
-      
-  //     setList(response.data.list);
-  //     setPageMaker(response.data.pageMaker);
-     
-   
-  //     console.log("성공")
-  //     console.log(url);
-  //   //  var active = pageMaker.cri.page ==  ? 'active' : ''
-  //   })
-  //   .catch((e) => {
-  //     console.log("실패")
-      
-  //   })
-
-    
-
-  // },[]);
-
+  const [pageMaker, setPageMaker] = useState([]);
+  const [list, setList] = useState([]);
+  
 
   let array = [];
   for (let i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
       array.push(i);
-  }
-  
+    }
+
+    
+    let active = 2;
+    let items = [];
+    for (let number = pageMaker.startPage; number <= pageMaker.endPage; number++) {
+      items.push(
+        <Pagination.Item key={number} active={number === active}>
+          {number}
+        </Pagination.Item>
+      );
+    }
+
+    const paginationBasic = (
+      <div>
+        
+
+        <Pagination size="lg"><a href={items}>{items}</a></Pagination>
+        <br />
+
+        
+      </div>
+    );
+
   return (
 
 
@@ -46,39 +46,34 @@ function App() {
     <div className="container">
       <h1 className="text-primary text-center">게시물 리스트</h1><br /><br />
       
-     {/* <Table striped bordered hover >
-        <thead>
-          <tr className="text-center">
-            <th>글번호</th>
-            <th className="col-md-5">제목</th>
-            <th className="col-md-3">작성자</th>
-            <th>작성일자</th>
-          </tr>
-        </thead>
-        <tbody className="text-center">
-        {list.map((item) => (
-          <tr>
-          <td>{item.bno}</td>
-          <td>{item.title}</td>
-          <td>{item.writer}</td>
-          <td>{item.regdate}</td>
-          </tr>
-          
-        ))}
-        </tbody>
-      </Table> */}
-        <List setList={setList} setPageMaker={setPageMaker} startPage={startPage} list={list}></List>
+      
+      <Route path="/:page">
+        <PagingList setList={setList} setPageMaker={setPageMaker} list={list}></PagingList>
+      </Route>  
       {pageMaker.prev === true ? 
-       <li class='page-item'><a class='page-link' href={pageMaker.startPage -1}> &laquo;</a></li> :""}
-        {array.map(page => (
-          <a href={page}>{page}</a>
+       <li className='page-item'><a className='page-link' href={pageMaker.startPage -1}> 
+       &laquo;</a></li> :""}
+
+        
+				
+
+        <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+          {array.map(page => (
+          <li className="page-item"><a className="page-link" href={page}>{page}</a></li>
         ))}
-					
+          <li className="page-item"><a className="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
     </div>
-    
+   
   );
   
+        
 }
+
+//setList={setList} setPageMaker={setPageMaker} list={list}
 
 // function Axios() {
 //   let [list, setList] = useState([]);
