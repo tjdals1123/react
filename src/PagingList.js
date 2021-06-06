@@ -7,7 +7,7 @@ function PagingList(props) {
 
     let { page } = useParams();
 
-    const url = "http://localhost:8282/board/list/" + page;
+    const url = "http://localhost:8181/board/list/" + page;
 
         useEffect(() => {
     
@@ -31,27 +31,7 @@ function PagingList(props) {
 
     return(
         <div>
-        <Table striped bordered hover >
-            <thead>
-            <tr className="text-center">
-                <th>글번호</th>
-                <th className="col-md-5">제목</th>
-                <th className="col-md-3">작성자</th>
-                <th>작성일자</th>
-            </tr>
-            </thead>
-            <tbody className="text-center">
-            {props.list.map((item) => (
-            <tr>
-            <td>{item.bno}</td>
-            <td>{item.title}</td>
-            <td>{item.writer}</td>
-            <td>{item.regdate}</td>
-            </tr>
-            
-            ))}
-            </tbody>
-        </Table>
+        
         </div>
 
     )

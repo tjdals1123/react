@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
-import {BrowserRouter} from 'react-router-dom';
-=======
+
 import { BrowserRouter } from 'react-router-dom';
->>>>>>> 026ae7ed77fc2b51248636e0698f7bdb8239fb5f
+
 
 ReactDOM.render(
   <React.StrictMode>

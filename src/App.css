@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+#searchSelect {
+  width : 100px;
+
+}
+.searchBar {
+  text-align: center;
+  margin-left: 350px;
+  margin-top : 50px;
+}
+.paging1 {
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
